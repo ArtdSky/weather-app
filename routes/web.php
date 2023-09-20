@@ -6,4 +6,4 @@ use App\Http\Controllers\WeatherController;
 
 
 Route::get('/', [WeatherController::class, 'index']);
-Route::post('/fetch-weather', [WeatherController::class, 'fetchWeather'])->name('fetch.weather');
+Route::post('/fetch-weather', [WeatherController::class, 'fetchWeather']);
