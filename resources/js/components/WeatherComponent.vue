@@ -1,13 +1,15 @@
 <template>
-    <div>
-        <form @submit.prevent="fetchWeather">
-            <input v-model="city" placeholder="Введите город">
-            <button type="submit">Получить погоду</button>
+    <div class="app-container">
+
+        <form @submit.prevent="fetchWeather" class="weather-form">
+            <input v-model="city" placeholder="Введите город" class="weather-input">
+            <button type="submit" class="weather-button">Узнать погоду</button>
         </form>
 
-        <WeatherDisplay :data="weatherData" />
+        <WeatherDisplay :data="weatherData"/>
     </div>
 </template>
+
 
 <script>
 import {fetchWeatherData} from "../service/weatherService.js";
@@ -34,3 +36,6 @@ export default {
     }
 }
 </script>
+
+
+<style src="../../css/WeatherComponentStyles.css"></style>
