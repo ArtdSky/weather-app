@@ -22,8 +22,7 @@ class WeatherController extends Controller
         $client = new Client();
         $response = $client->get("http://api.openweathermap.org/data/2.5/weather?q={$city}&appid={$apiKey}&units=metric");
         $data = json_decode($response->getBody(), true);
-
-        return view('weather.index', ['weatherData' => $data]);
+        return response()->json($data);
     }
 
 }
