@@ -6,7 +6,11 @@
             <button type="submit" class="weather-button">Узнать погоду</button>
         </form>
 
-        <WeatherDisplay :data="weatherData"/>
+        <div v-if="isLoading" class="loading-animation">Загрузка...</div>
+
+        <p v-if="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+        <WeatherDisplay v-if="isValidWeatherData" :data="weatherData"/>
     </div>
 </template>
 
@@ -22,20 +26,40 @@ export default {
     data() {
         return {
             city: '',
-            weatherData: null
+            weatherData: null,
+            errorMessage: null,
+            isLoading: false
         };
+    },
+    computed: {
+        isValidWeatherData() {
+            return this.weatherData && this.weatherData.main && this.weatherData.weather && this.weatherData.sys && this.weatherData.wind;
+        }
     },
     methods: {
         async fetchWeather() {
             try {
-                this.weatherData = await fetchWeatherData(this.city)
+                this.isLoading = true;
+                const responseData = await fetchWeatherData(this.city);
+                if (responseData.error) {
+                    this.errorMessage = responseData.error;
+                    this.weatherData = null;
+                } else {
+                    this.weatherData = responseData;
+                    this.errorMessage = null;
+                }
+                this.isLoading = false;
             } catch (error) {
+                this.weatherData = null;
+                this.errorMessage = "Возникла непредвиденная ошибка, попробуйте позже";
                 console.error("Ошибка при получении погоды:", error);
             }
         }
+
     }
 }
 </script>
 
 
 <style src="../../css/WeatherComponentStyles.css"></style>
+
