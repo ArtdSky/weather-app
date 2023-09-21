@@ -14,10 +14,10 @@
 
 ## UI 
 
-|            |                                                          |
-|------------|----------------------------------------------------------|
-| screenshot | <img src="assets/weather-laravel-vue.png" height="600">  |
-| gif        | <img src="assets/weather-laravel-vue.gif"  height="600"> |
+|            |                                                                      |
+|------------|----------------------------------------------------------------------|
+| screenshot | <img src="assets/weather-laravel-vue.png" height="600" width="800">  |
+| gif        | <img src="assets/weather-laravel-vue.gif"  height="600" width="800"> |
 
 ## Использованные технологии
 
