@@ -1,7 +1,6 @@
 .app-container {
-    background: linear-gradient(to bottom, #ffffff 0%, #d9e7ff 100%);
     color: #333;
-    height: 100vh;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -13,6 +12,8 @@
     justify-content: center;
     align-items: center;
     gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 .weather-input {
@@ -44,3 +45,29 @@
     background-color: #0056b3;
 }
 
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.loading-animation {
+    font-size: 24px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@media (max-width: 500px ) {
+    .weather-button {
+        width: 100%;
+    }
+
+}
