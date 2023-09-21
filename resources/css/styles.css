@@ -1,0 +1,20 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-image: url("/public/images/backgrounds/sky.png");
+    background-size: contain;
+    background-color: #ebebeb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+#app {
+    height: 100%;
+}

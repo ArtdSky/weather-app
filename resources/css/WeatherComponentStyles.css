@@ -1,0 +1,73 @@
+.app-container {
+    color: #333;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.weather-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.weather-input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #cccccc;
+    font-size: 16px;
+    flex: 1;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.weather-input:focus {
+    border-color: #007BFF;
+}
+
+.weather-button {
+    padding: 10px 15px;
+    background-color: #007BFF;
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.weather-button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.loading-animation {
+    font-size: 24px;
+    color: #666;
+    text-align: center;
+    margin-top: 20px;
+    animation: spin 1s infinite linear;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+@media (max-width: 500px ) {
+    .weather-button {
+        width: 100%;
+    }
+
+}
