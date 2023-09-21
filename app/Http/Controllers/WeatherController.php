@@ -2,39 +2,40 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\WeatherRepository;
+use App\Services\WeatherService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use GuzzleHttp\Client;
-use Illuminate\Support\Facades\Cache;
 
 class WeatherController extends Controller
 {
+    private WeatherService $weatherService;
+    private WeatherRepository $weatherRepository;
+
+    public function __construct(WeatherService $weatherService, WeatherRepository $weatherRepository)
+    {
+        $this->weatherRepository = $weatherRepository;
+        $this->weatherService = $weatherService;
+    }
 
 
-    public function index(){
+    public function index()
+    {
         return view('weather.index');
     }
 
 
-    public function fetchWeather(Request $request)
+    public function fetchWeather(Request $request): JsonResponse
     {
-
         $city = $request->input('city');
-        $data = Cache::get($city);
+        $data = $this->weatherRepository->get($city);
+
         if (!$data) {
-            $apiKey = env('OPENWEATHERMAP_KEY');
-
-            $client = new Client();
-            $response = $client->get("http://api.openweathermap.org/data/2.5/weather?q={$city}&appid={$apiKey}&units=metric");
-
-            $data = json_decode($response->getBody(), true);
-
-            // Сохраняем данные о погоде в кеше на 1 час
-            Cache::put($city, $data, 3600);
+            $data = $this->weatherService->getWeatherData($city);
+            $this->weatherRepository->put($city, $data);
         }
 
         return response()->json($data);
-
-
     }
 
 }
